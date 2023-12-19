@@ -11,7 +11,7 @@ interface Counter {
 }
 
 contract Deploy is Script {
-  function run() public returns (SimpleStore simpleStore) {
-    simpleStore = Counter(HuffDeployer.deploy("Counter"));
+  function run() public returns (Counter counter) {
+    counter = Counter(HuffDeployer.deploy("Counter"));
   }
 }
