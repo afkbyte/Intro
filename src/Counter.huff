@@ -1,0 +1,57 @@
+// SPDX-License-Identifier: UNLICENSED
+
+// Remember the counter contract from the default foundry template?
+// let's try converting it to huff!
+
+// contract Counter {
+//     uint256 public number;
+
+//     function setNumber(uint256 newNumber) public {
+//         number = newNumber;
+//     }
+
+//     function increment() public {
+//         number++;
+//     }
+// }
+
+
+/* Interface */
+// First we want to define the interface for our contract.
+// as we can see above there are the following functions:
+// - getNumber() returns (uint256)
+// - setNumber(uint256)
+// - increment()
+
+// We can define these as follows:
+#define function getNumber() view returns (uint256)
+#define function setNumber(uint256) nonpayable returns ()
+#define function increment() nonpayable returns ()
+
+/* Storage Slots */
+
+// specify the free storage pointer
+// this is where we will store the value of our number variable.
+#define constant NUMBER_STORAGE_SLOT = FREE_STORAGE_POINTER()
+
+/* Methods */
+
+// Methods are defined as macros in huff.
+// pretty explicit, we specify the name of the macro,
+// how many elements from the stack it takes
+// and how many elements from the stack it puts back
+
+// We can define the setNumber function as follows:
+#define macro SET_NUMBER() = takes (x) returns (y) {}
+
+// We can define the number function as follows:
+#define macro GET_NUMBER() = takes (x) returns (y) {}
+
+// We can define the increment function as follows:
+#define macro INCREMENT() = takes (x) returns (y) {}
+
+#define macro MAIN() = takes (0) returns (0) {
+    // load the function selector from calldata
+
+    // lookup table
+}
